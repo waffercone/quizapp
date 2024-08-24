@@ -1,7 +1,5 @@
-random
 flask
 flask-cors
-requests
 openai
 python-dotenv
 gunicorn
