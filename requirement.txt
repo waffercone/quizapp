@@ -1,0 +1,6 @@
+os
+random
+flask
+openai
+python-dotenv
+gunicorn
