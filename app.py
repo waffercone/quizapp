@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import os
 import openai
 from dotenv import load_dotenv
-import random
 
 # Load environment variables from .env file
 load_dotenv()
