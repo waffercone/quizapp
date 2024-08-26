@@ -39,6 +39,12 @@ def generate_question(topic):
         for choice in lines[6:]
     }
 
+    # Debug print statements
+    print("Generated Question:", question)
+    print("Choices:", choices)
+    print("Correct Answer:", correct_answer)
+    print("Explanations:", explanations)
+
     return {
         "question": question,
         "choices": choices,
@@ -59,7 +65,10 @@ def generate_quiz():
         question_data = generate_question(topic)
         questions.append(question_data)
 
+    # Debug print statement
+    print("Generated Questions:", questions)
+
     return jsonify({"questions": questions})
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True)
