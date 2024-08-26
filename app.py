@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import os
 import openai
 from dotenv import load_dotenv
-import random
 
 # Load environment variables from .env file
 load_dotenv()
@@ -39,12 +38,6 @@ def generate_question(topic):
         for choice in lines[6:]
     }
 
-    # Debug print statements
-    print("Generated Question:", question)
-    print("Choices:", choices)
-    print("Correct Answer:", correct_answer)
-    print("Explanations:", explanations)
-
     return {
         "question": question,
         "choices": choices,
@@ -52,7 +45,7 @@ def generate_question(topic):
         "explanations": explanations,
     }
 
-@app.route('/generate_quiz', methods=['GET'])
+@app.route('/generate-questions', methods=['POST'])
 def generate_quiz():
     data = request.json
     topic = data.get('topic')
@@ -61,12 +54,9 @@ def generate_quiz():
         return jsonify({"error": "Topic is required"}), 400
 
     questions = []
-    for _ in range(5):
+    for _ in range(data.get('num_questions', 5)):  # Default to 5 questions if not provided
         question_data = generate_question(topic)
         questions.append(question_data)
-
-    # Debug print statement
-    print("Generated Questions:", questions)
 
     return jsonify({"questions": questions})
 
